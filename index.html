@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="The Lantern at Hogwarts — an interactive Harry Potter fan-learning journey built with HTML, CSS and JavaScript." />
+  <title>The Lantern at Hogwarts</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <div class="mist mist-1"></div>
+  <div class="mist mist-2"></div>
+  <div class="particles" id="particles" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <a href="#home" class="brand" aria-label="The Lantern at Hogwarts home">
+      <span class="brand-lantern">🏮</span>
+
+      <span>
+        <strong>The Lantern</strong>
+        <small>at Hogwarts</small>
+      </span>
+    </a>
+
+    <button
+      class="menu-toggle"
+      id="menuToggle"
+      aria-label="Open navigation"
+      aria-expanded="false"
+    >
+      ☰
+    </button>
+
+    <nav class="main-nav" id="mainNav">
+      <a href="#journey">Journey</a>
+      <a href="#characters">Characters</a>
+      <a href="#world">Wizarding World</a>
+      <a href="#games">Games</a>
+      <a href="#quotes">Quotes</a>
+    </nav>
+
+    <div class="progress-pill" id="progressPill">
+      0 / 7 Unlocked
+    </div>
+  </header>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="hero section" id="home">
+      <div class="hero-copy">
+        <p class="eyebrow">A BEGINNER'S GUIDE TO THE WIZARDING WORLD</p>
+
+        <h1>
+          You were a <span>Muggle</span>.<br />
+          Now the lantern is calling.
+        </h1>
+
+        <p class="hero-text">
+          Start from zero, discover Hogwarts one story at a time,
+          meet the people who shape the world, test what you remember,
+          and light the path to the next chapter.
+        </p>
+
+        <div class="hero-actions">
+          <button class="btn btn-primary" id="beginJourney">
+            Begin Your Journey ✨
+          </button>
+
+          <button class="btn btn-ghost" id="scrollJourney">
+            View the Roadmap
+          </button>
+        </div>
+
+        <div class="hero-note">
+          <span class="dot"></span>
+          No login. No backend. Your progress is saved in this browser.
+        </div>
+      </div>
+
+      <div class="hero-lantern-wrap" aria-hidden="true">
+        <div class="moon"></div>
+
+        <div class="floating-rune rune-a">✦</div>
+        <div class="floating-rune rune-b">ᚫ</div>
+
+        <div class="lantern-glow"></div>
+
+        <div class="hero-lantern">
+          🏮
+        </div>
+
+        <div class="hero-floor"></div>
+      </div>
+    </section>
+
+
+    <!-- INTRO -->
+    <section class="intro section" id="intro">
+      <div class="section-heading compact">
+        <p class="eyebrow">STEP 01</p>
+
+        <h2>Every wizard starts somewhere.</h2>
+
+        <p>
+          You don't need to know the lore yet.
+          The lantern will guide you.
+        </p>
+      </div>
+
+      <div class="muggle-card">
+
+        <div class="muggle-seal">M</div>
+
+        <div>
+          <h3>Current status: Muggle</h3>
+
+          <p>
+            No wand. No house. No magical vocabulary. Perfect.
+            Begin with the story, understand the people, then earn
+            your way forward with five questions after every chapter.
+          </p>
+        </div>
+
+        <div class="mini-stats">
+          <span>
+            <strong id="journeyCount">0</strong>
+            <small>chapters done</small>
+          </span>
+
+          <span>
+            <strong id="quizCount">0</strong>
+            <small>quizzes passed</small>
+          </span>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- JOURNEY -->
+    <section class="journey section" id="journey">
+
+      <div class="section-heading">
+
+        <p class="eyebrow">
+          THE SEVEN-CHAPTER ROAD
+        </p>
+
+        <h2>
+          Light the lantern, one story at a time.
+        </h2>
+
+        <p>
+          Read, watch, buy, mark your chapter complete,
+          then pass the five-question quiz to unlock the next.
+        </p>
+
+      </div>
+
+      <div class="timeline" id="timeline"></div>
+
+      <div class="journey-footer">
+
+        <button class="btn btn-ghost" id="resetProgress">
+          Reset Journey
+        </button>
+
+        <p>
+          Progress is stored with
+          <code>localStorage</code>
+          on this device.
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <!-- CHARACTERS -->
+    <section class="characters section" id="characters">
+
+      <div class="section-heading">
+
+        <p class="eyebrow">
+          THE PEOPLE
+        </p>
+
+        <h2>
+          Meet the Wizarding World.
+        </h2>
+
+        <p>
+          Start with ten essentials, then reveal the full character library.
+        </p>
+
+      </div>
+
+      <div
+        class="character-grid"
+        id="featuredCharacters"
+      ></div>
+
+      <div class="center-row">
+
+        <button
+          class="btn btn-primary"
+          id="showCharacters"
+        >
+          See More Characters
+        </button>
+
+      </div>
+
+      <div
+        class="character-library hidden"
+        id="characterLibrary"
+      >
+
+        <div class="library-toolbar">
+
+          <input
+            id="characterSearch"
+            type="search"
+            placeholder="Search characters…"
+            aria-label="Search characters"
+          />
+
+          <div
+            class="chip-row"
+            id="characterFilters"
+          ></div>
+
+        </div>
+
+        <div
+          class="character-grid full"
+          id="allCharacters"
+        ></div>
+
+      </div>
+
+
+      <!-- VOLDEMORT -->
+      <div class="voldemort-card">
+
+        <div class="voldemort-art">
+          🐍
+        </div>
+
+        <div>
+
+          <p class="eyebrow">
+            THE UNOFFICIAL AWARD
+          </p>
+
+          <h3>
+            Worst Character: Lord Voldemort
+          </h3>
+
+          <p>
+            Friendship: ❌ &nbsp;
+            Teamwork: ❌ &nbsp;
+            Nose: ❌❌❌ &nbsp;
+            General vibes: absolutely not.
+          </p>
+
+        </div>
+
+        <span class="voldemort-stamp">
+          0/5
+        </span>
+
+      </div>
+
+    </section>
+
+
+    <!-- WIZARDING WORLD -->
+    <section class="world section" id="world">
+
+      <div class="section-heading">
+
+        <p class="eyebrow">
+          THE WIZARDING WORLD
+        </p>
+
+        <h2>
+          Things worth knowing before you enter.
+        </h2>
+
+        <p>
+          Tap a card to reveal a compact explanation.
+        </p>
+
+      </div>
+
+      <div
+        class="world-grid"
+        id="worldGrid"
+      ></div>
+
+    </section>
+
+
+    <!-- GAMES -->
+    <section class="games section" id="games">
+
+      <div class="section-heading">
+
+        <p class="eyebrow">
+          THE WIZARDING ARCADE
+        </p>
+
+        <h2>
+          A little magic between chapters.
+        </h2>
+
+        <p>
+          Original mini-games powered entirely by JavaScript.
+        </p>
+
+      </div>
+
+      <div class="game-grid">
+
+        <article
+          class="game-card"
+          id="houseGame"
+        >
+
+          <div class="game-icon">
+            🎩
+          </div>
+
+          <h3>
+            Sorting Hat
+          </h3>
+
+          <p>
+            Answer five personality questions
+            and receive a Hogwarts house.
+          </p>
+
+          <button
+            class="btn btn-secondary game-btn"
+            data-game="sorting"
+          >
+            Start
+          </button>
+
+        </article>
+
+
+        <article
+          class="game-card"
+          id="spellGame"
+        >
+
+          <div class="game-icon">
+            🪄
+          </div>
+
+          <h3>
+            Spell Match
+          </h3>
+
+          <p>
+            Match the magical effect to
+            the correct spell.
+          </p>
+
+          <button
+            class="btn btn-secondary game-btn"
+            data-game="spell"
+          >
+            Start
+          </button>
+
+        </article>
+
+
+        <article
+          class="game-card"
+          id="memoryGame"
+        >
+
+          <div class="game-icon">
+            🃏
+          </div>
+
+          <h3>
+            Magical Memory
+          </h3>
+
+          <p>
+            Find the matching Hogwarts-themed
+            pairs with as few turns as possible.
+          </p>
+
+          <button
+            class="btn btn-secondary game-btn"
+            data-game="memory"
+          >
+            Start
+          </button>
+
+        </article>
+
+      </div>
+
+    </section>
+
+
+    <!-- QUOTES -->
+    <section class="quotes section" id="quotes">
+
+      <div class="section-heading">
+
+        <p class="eyebrow">
+          WORDS & WISDOM
+        </p>
+
+        <h2>
+          Lantern Lines.
+        </h2>
+
+        <p>
+          Original, portfolio-safe reflections inspired by
+          themes in the wizarding world — not reproduced dialogue.
+        </p>
+
+      </div>
+
+      <div
+        class="quote-display"
+        id="quoteDisplay"
+      >
+
+        <span class="quote-mark">
+          “
+        </span>
+
+        <p id="quoteText"></p>
+
+        <small id="quoteSource"></small>
+
+      </div>
+
+      <div class="center-row">
+
+        <button
+          class="btn btn-primary"
+          id="randomQuote"
+        >
+          Reveal Another Line ✨
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <!-- ABOUT -->
+    <section class="about section" id="about">
+
+      <div class="about-card">
+
+        <div>
+
+          <p class="eyebrow">
+            THE LANTERN AT HOGWARTS
+          </p>
+
+          <h2>
+            A static fan-learning project.
+          </h2>
+
+          <p>
+            Built with HTML, CSS and vanilla JavaScript.
+            No accounts, no server, no database.
+            Add your own legally obtained PDFs to the
+            <code>books/</code> folder and replace the
+            links in <code>script.js</code> as needed.
+          </p>
+
+        </div>
+
+        <div class="about-seal">
+          🏰
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+
+    <span>
+      🏮 The Lantern at Hogwarts
+    </span>
+
+    <span>
+      Built for learning, design practice & portfolio use.
+    </span>
+
+  </footer>
+
+
+  <!-- MODAL -->
+  <div
+    class="modal-backdrop hidden"
+    id="modalBackdrop"
+  ></div>
+
+  <div
+    class="modal hidden"
+    id="storyModal"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="storyModalTitle"
+  >
+
+    <button
+      class="modal-close"
+      data-close-modal
+      aria-label="Close"
+    >
+      ×
+    </button>
+
+    <div id="modalContent"></div>
+
+  </div>
+
+
+  <!-- TOAST -->
+  <div
+    class="toast"
+    id="toast"
+    role="status"
+    aria-live="polite"
+  ></div>
+
+
+  <script
+    src="script.js"
+    defer
+  ></script>
+
+</body>
+</html>
